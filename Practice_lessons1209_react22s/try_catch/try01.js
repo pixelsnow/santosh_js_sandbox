@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 Start this challenge by visualizing how the console will only log "Step 1" and then the error but no "Step 2" because an error has occurred and we did not recover from it.
@@ -7,10 +7,15 @@ Notice how after you fix it, you will see both steps being logged to the console
 */
 
 const runCode = () => {
-    console.log("Step 1");
+  console.log("Step 1");
+  try {
     getData();
-    console.log("Step 2");
-}
+  } catch (error) {
+    console.error(error);
+  }
+
+  console.log("Step 2");
+};
 
 // Sample usage - do not modify
 runCode();
