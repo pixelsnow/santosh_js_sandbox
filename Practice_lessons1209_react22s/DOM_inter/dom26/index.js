@@ -4,9 +4,9 @@ const disable = document.querySelector("#btn-disable");
 const start = document.querySelector("#btn-start");
 
 disable.addEventListener("click", () => {
-    start.setAttribute("disabled", "disabled");
+  start.setAttribute("disabled", "disabled");
 });
 
 enable.addEventListener("click", () => {
-    start.removeAttribute("disabled");
+  start.removeAttribute("disabled");
 });
