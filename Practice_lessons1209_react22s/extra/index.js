@@ -26,44 +26,52 @@ const getListItemsThird = () => document.querySelector("ol li.third");
 // Sample usage - do not modify
 console.log(getListItemsThird());
 
-// 5 - Give the section with an id of container the text "Hello!".
+/* // 5 - Give the section with an id of container the text "Hello!".
 
-const giveSectionContainerID = () => {};
+const giveSectionContainerID = () =>
+  (getSectionContainerUsingQuery().textContent = "Hello");
 
 // Sample usage - do not modify
-console.log(giveSectionContainerID());
+console.log(giveSectionContainerID()); */
 
 // 6 - Add the class main to the div with a class of footer.
 
-const addClassMainToDiv = () => {};
+const addClassMainToDiv = () =>
+  document.querySelector("div.footer").classList.add("main");
 
 // Sample usage - do not modify
-console.log(addClassMainToDiv());
+addClassMainToDiv();
+console.log(document.querySelector("div.footer").classList);
 
 // 7 - Remove the class main on the div with a class of footer.
 
-const removeClassMainToDiv = () => {};
+const removeClassMainToDiv = () =>
+  document.querySelector("div.footer").classList.remove("main");
 
 // Sample usage - do not modify
-console.log(removeClassMainToDiv());
+removeClassMainToDiv();
+console.log(document.querySelector("div.footer").classList);
 
 // 8 - Create a new li element.
 
-const createliElements = () => {};
+const createliElements = () =>
+  (document.querySelector("section#container ul").innerHTML +=
+    "<li class='fourth'></li>");
 
 // Sample usage - do not modify
 console.log(createliElements());
 
 // 9 - Give the li the text "four".
 
-const giveliText = () => {};
+const giveliText = () =>
+  (document.querySelector("ul li.fourth").textContent = "four");
 
 // Sample usage - do not modify
 console.log(giveliText());
 
 // 10 - Remove the div with a class of footer.
 
-const removeDiv = () => {};
+const removeDiv = () => (document.querySelector("div.footer").innerHTML = "");
 
 // Sample usage - do not modify
 console.log(removeDiv());
