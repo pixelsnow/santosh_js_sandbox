@@ -4,20 +4,38 @@ class Tasks {
   }
 
   /** @param {string} csvString */
-  importCsv(csvString) {}
+  importCsv(csvString) {
+    this.tasks = csvString.split(", ");
+  }
+
+  getCount() {
+    return this.tasks.length;
+  }
+
+  getFirst() {
+    return this.tasks?.[0];
+  }
+
+  getLast() {
+    return this.tasks?.[this.tasks.length - 1];
+  }
+
+  getUnformattedTasks() {
+    return this.tasks.map((task) => task.toLowerCase()).join(", ");
+  }
 }
 
 //Sample usage do not modify (but feel free to read)
-const dropdown = document.querySelector('#csv-dropdown');
-const tbody = document.querySelector('#tbody');
+const dropdown = document.querySelector("#csv-dropdown");
+const tbody = document.querySelector("#tbody");
 
 const tasks = new Tasks();
 
 function render() {
-  tbody.innerHTML = '';
+  tbody.innerHTML = "";
   tasks.tasks.forEach(function (task) {
     tbody.insertAdjacentHTML(
-      'beforeend',
+      "beforeend",
       `<tr>
             <th>Task</th>
             <td>${task}</td>
@@ -25,7 +43,7 @@ function render() {
     );
   });
   tbody.insertAdjacentHTML(
-    'beforeend',
+    "beforeend",
     `<tr class="separator">
             <th>Number of tasks</th>
             <td>${tasks.getCount()}</td>
@@ -46,7 +64,7 @@ function render() {
   );
 }
 
-dropdown.addEventListener('change', (event) => {
+dropdown.addEventListener("change", (event) => {
   tasks.importCsv(dropdown.value);
   render();
 });
