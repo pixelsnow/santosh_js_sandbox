@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 // Sample usage (do not modify)
-const wait = milliseconds => {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve();
-        }, milliseconds);
-    });
-}
+const wait = (milliseconds) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("hei");
+    }, milliseconds);
+  });
+};
 
 /**
 Run the code and take a look at the output.
@@ -14,11 +14,11 @@ Visualize the promise state at every step (using your browser's dev tools consol
 why the last line logs pending rather than fulfilled....*/
 
 const waitPromise = wait(1000);
-console.log(waitPromise); // pending at this stage
+console.log(1, waitPromise); // pending at this stage
 
 waitPromise.then(() => {
-    console.log("waited 1 second");
-    console.log(waitPromise); // fulfilled at this stage
+  console.log("waited 1 second");
+  console.log(2, waitPromise); // fulfilled at this stage
 });
 
-console.log(waitPromise); // pending at this stage
+console.log(3, waitPromise); // pending at this stage

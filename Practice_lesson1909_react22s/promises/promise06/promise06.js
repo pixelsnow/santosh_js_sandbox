@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
 The function waitForCompleteClick  will complete when the user (you) click on the Complete button in the browser tab.
@@ -8,11 +8,11 @@ Unlike the wait() function, this function does not take any parameters.....*/
 // Sample usage (do not modify)
 const waitForCompleteClick = () => {
   return new Promise((resolve) => {
-    document.querySelector('#complete-btn').addEventListener('click', () => {
+    document.querySelector("#complete-btn").addEventListener("click", () => {
       resolve();
     });
   });
 };
 
 // Update here...
-console.log('Complete clicked');
+console.log("Complete clicked");
