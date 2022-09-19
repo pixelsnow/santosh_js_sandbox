@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
 We're using the same fakeFetch function from the last excercise that takes a string as a parameter. This fake fetch only handles the "flight-status" for now.
@@ -9,9 +9,14 @@ In the future, once we implement user-details, the code will automatically work 
 
 const waitOneSecond = () => {
   // write here
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  });
 };
 
 // Sample usage - do not modify
 waitOneSecond().then(() => {
-  console.log('Done waiting.');
+  console.log("Done waiting.");
 });
