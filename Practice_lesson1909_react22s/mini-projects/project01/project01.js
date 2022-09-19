@@ -421,6 +421,7 @@ Also, leading and trailing spaces in the search input should be ignored. */
 const search = document.querySelector("#app-search");
 const res = document.querySelector("#results-list");
 
+/* possibly use filter? */
 search.addEventListener("input", (e) => {
   res.innerHTML = "";
   input = e.currentTarget.value;

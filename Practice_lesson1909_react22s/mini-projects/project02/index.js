@@ -5,9 +5,7 @@ class FetchWrapper {
   }
 
   get(endpoint) {
-    return fetch(this.baseURL + endpoint).then((response) => {
-      return response.json(); /* THERE WAS NO RETURN */
-    });
+    return fetch(this.baseURL + endpoint).then((response) => response.json());
   }
 
   put(endpoint, body) {
@@ -70,3 +68,5 @@ form.addEventListener("submit", (e) => {
     stopLoader(loader, "");
   });
 });
+
+/* TODO: add links to click */
