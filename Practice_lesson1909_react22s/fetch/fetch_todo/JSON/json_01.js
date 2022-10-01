@@ -11,6 +11,8 @@ This willItRain function receives a JSON string from a fictive weather API.
  */
 const willItRain = (weatherApiResponse) => {
   // write it here
+  const data = JSON.parse(weatherApiResponse);
+  return data.now.rainExpected;
 };
 
 // Sample usage - do not modify
