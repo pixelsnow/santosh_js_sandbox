@@ -5,7 +5,6 @@ class FetchWrapper {
   }
 
   get(endpoint) {
-    console.log(this.baseURL + endpoint);
     return fetch(this.baseURL + endpoint).then((response) => response.json());
   }
 
@@ -57,22 +56,31 @@ const form = document.querySelector("#repos-form");
 const input = document.querySelector("#github-username");
 const loader = document.querySelector("#loader");
 
+const fetchPage = (wrapper, username, page) => {
+  wrapper
+    .get(`users/${input.value}/repos?page=${page}&per_page=100`)
+    .then((data) => {
+      if (!data.length) return;
+      console.log("items on this page: ", data.length);
+      data.forEach((repo) => {
+        repoList.insertAdjacentHTML(
+          "beforeend",
+          `<li>
+            <a href="${repo.html_url}">
+            ${repo.name}
+            </a>
+        </li>`
+        );
+      });
+      fetchPage(wrapper, username, page + 1);
+      stopLoader(loader, "");
+    });
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   repoList.innerHTML = "";
   startLoader(loader);
   const wrapper = new FetchWrapper("https://api.github.com/");
-  wrapper.get(`users/${input.value}/repos`).then((data) => {
-    data.forEach((repo) => {
-      repoList.insertAdjacentHTML(
-        "beforeend",
-        `<li>
-        <a href="https://github.com/${input.value}/${repo.name}">
-        ${repo.name}
-        </a>
-        </li>`
-      );
-    });
-    stopLoader(loader, "");
-  });
+  fetchPage(wrapper, input.value, 1);
 });
