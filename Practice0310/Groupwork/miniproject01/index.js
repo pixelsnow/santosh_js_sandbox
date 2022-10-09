@@ -66,10 +66,10 @@ const fetchPage = (wrapper, username, page) => {
         repoList.insertAdjacentHTML(
           "beforeend",
           `<li>
-            <a href="${repo.html_url}">
-            ${repo.name}
-            </a>
-        </li>`
+                <a href="${repo.html_url}">
+                ${repo.name}
+                </a>
+            </li>`
         );
       });
       fetchPage(wrapper, username, page + 1);
@@ -80,7 +80,7 @@ const fetchPage = (wrapper, username, page) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   repoList.innerHTML = "";
-  startLoader(loader);
   const wrapper = new FetchWrapper("https://api.github.com/");
+  startLoader(loader);
   fetchPage(wrapper, input.value, 1);
 });
