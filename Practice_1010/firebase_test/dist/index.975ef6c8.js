@@ -534,7 +534,9 @@ function hmrAcceptRun(bundle, id) {
 },{}],"8lqZg":[function(require,module,exports) {
 var _app = require("firebase/app");
 var _analytics = require("firebase/analytics");
+// Importing Firebase commands
 var _database = require("firebase/database");
+// This is all copied from Firebase db
 const firebaseConfig = {
     apiKey: "AIzaSyAb99Vo5U39ZHI4le-T0uRc9FcSyVgVASQ",
     authDomain: "fir-tutorial-1-cfc14.firebaseapp.com",
@@ -548,6 +550,7 @@ const firebaseConfig = {
 const app = (0, _app.initializeApp)(firebaseConfig);
 const analytics = (0, _analytics.getAnalytics)(app);
 const db = (0, _database.getDatabase)(app);
+// Taking from DOM
 let enterID = document.querySelector("#enterID");
 let enterName = document.querySelector("#enterName");
 let enterAge = document.querySelector("#enterAge");
@@ -558,7 +561,9 @@ let insertBtn = document.querySelector("#insert");
 let updateBtn = document.querySelector("#update");
 let removeBtn = document.querySelector("#remove");
 let findBtn = document.querySelector("#find");
+// C - Create
 function InsertData() {
+    // set - to write data into a database
     (0, _database.set)((0, _database.ref)(db, "People/" + enterID.value), {
         Name: enterName.value,
         ID: enterID.value,
@@ -569,6 +574,7 @@ function InsertData() {
         alert(error);
     });
 }
+// R - Read
 function FindData() {
     const dbref = (0, _database.ref)(db);
     (0, _database.get)((0, _database.child)(dbref, "People/" + findID.value)).then((snapshot)=>{
@@ -580,6 +586,7 @@ function FindData() {
         alert(error);
     });
 }
+// U - Update
 function UpdateData() {
     (0, _database.update)((0, _database.ref)(db, "People/" + enterID.value), {
         Name: enterName.value,
@@ -590,6 +597,7 @@ function UpdateData() {
         alert(error);
     });
 }
+// D - Delete
 function RemoveData() {
     (0, _database.remove)((0, _database.ref)(db, "People/" + enterID.value)).then(()=>{
         alert("Data deleted successfully");
@@ -1859,8 +1867,8 @@ parcelHelpers.export(exports, "validateCallback", ()=>validateCallback);
 parcelHelpers.export(exports, "validateContextObject", ()=>validateContextObject);
 parcelHelpers.export(exports, "validateIndexedDBOpenable", ()=>validateIndexedDBOpenable);
 parcelHelpers.export(exports, "validateNamespace", ()=>validateNamespace);
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 /**
  * @license
  * Copyright 2017 Google LLC
