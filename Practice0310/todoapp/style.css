@@ -59,7 +59,7 @@ h1 {
 
 #list label {
   margin: 0 0.5rem 0;
-  /*   width: calc(100% - 3rem); */
+  width: calc(100% - 3rem);
 }
 
 #list button {

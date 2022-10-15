@@ -29,6 +29,9 @@ const renderItem = (item, index) => {
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
   input.setAttribute("id", `item${index}`);
+  console.log(index, input.checked);
+  if (item.done) input.checked = true;
+  console.log(index, input.checked);
 
   const label = document.createElement("label");
   label.setAttribute("for", `item${index}`);
