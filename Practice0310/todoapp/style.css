@@ -17,10 +17,10 @@ body {
 }
 
 .list-container {
-  margin-top: 4rem;
-  width: 300px;
+  margin-top: 10vh;
+  width: 350px;
   background-color: white;
-  padding: 4rem;
+  padding: 3rem;
   border-radius: 1rem;
   text-align: center;
 }
@@ -85,6 +85,11 @@ h1 {
   color: white;
   padding: 0.8rem 1.2rem;
   border-radius: 0.5rem;
+}
+
+#list li.done label {
+  text-decoration: line-through;
+  color: #a9a9a9;
 }
 
 .hidden {
