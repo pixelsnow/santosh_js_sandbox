@@ -9,19 +9,31 @@ let itemsArray = localStorage.getItem("items")
   : [];
 
 // Adds an item to HTML
-const renderItem = (text) => {
+const renderItem = (item, index) => {
   const li = document.createElement("li");
-  li.textContent = text;
+
+  const input = document.createElement("input");
+  input.setAttribute("type", "checkbox");
+  input.setAttribute("id", `${index}`);
+
+  const label = document.createElement("label");
+  label.setAttribute("for", `${index}`);
+  label.textContent = item;
+
   const btn = document.createElement("button");
+  btn.setAttribute("id", `del${index}`);
   btn.classList.add("delete-item");
   btn.textContent = "x";
+
+  li.appendChild(input);
+  li.appendChild(label);
   li.appendChild(btn);
   list.appendChild(li);
 };
 
 // Add all items to HTML
-itemsArray.forEach((item) => {
-  renderItem(item);
+itemsArray.forEach((item, index) => {
+  renderItem(item, index);
 });
 
 // Adds an item to the list
@@ -45,11 +57,6 @@ const clearList = () => {
 };
 
 clear.addEventListener("click", clearList);
-
-/* listItems.forEach((item) => {
-  console.log(item.firstChild);
-  item.firstChild.addEventListener("click", console.log("del"));
-}); */
 
 const deleteItem = (e) => {
   const del = e.currentTarget.parentElement;
