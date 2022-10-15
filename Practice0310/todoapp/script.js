@@ -1,46 +1,72 @@
+"use strict";
+
 const form = document.querySelector("#item-form");
 const itemInput = document.querySelector("#item");
 const list = document.querySelector("#list");
-const clear = document.querySelector("#clear-button");
+const clearBtn = document.querySelector("#clear-button");
 
-// Fetch list items from localStorage
-let itemsArray = localStorage.getItem("items")
-  ? JSON.parse(localStorage.getItem("items"))
-  : [];
+const deleteItem = (e) => {
+  const index = +e.currentTarget.id;
+  console.log("deleting index ", index);
+  itemsArray.splice(index, 1);
+  localStorage.setItem("items", JSON.stringify(itemsArray));
+  renderList();
+};
+
+const crossItem = (e) => {
+  /* e.currentTarget.parentElement.classList.toggle("done"); */
+  const index = +e.currentTarget.id.slice(4);
+  itemsArray[index].done = !itemsArray[index].done;
+  localStorage.setItem("items", JSON.stringify(itemsArray));
+  renderList();
+};
 
 // Adds an item to HTML
 const renderItem = (item, index) => {
   const li = document.createElement("li");
+  if (item.done) li.classList.add("done");
 
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
-  input.setAttribute("id", `${index}`);
+  input.setAttribute("id", `item${index}`);
 
   const label = document.createElement("label");
-  label.setAttribute("for", `${index}`);
-  label.textContent = item;
+  label.setAttribute("for", `item${index}`);
+  label.textContent = item.text;
 
   const btn = document.createElement("button");
-  btn.setAttribute("id", `del${index}`);
+  btn.setAttribute("id", `${index}`);
   btn.classList.add("delete-item");
   btn.textContent = "x";
+
+  input.addEventListener("change", crossItem);
+  btn.addEventListener("click", deleteItem);
 
   li.appendChild(input);
   li.appendChild(label);
   li.appendChild(btn);
+
   list.appendChild(li);
 };
 
 // Add all items to HTML
-itemsArray.forEach((item, index) => {
-  renderItem(item, index);
-});
+const renderList = () => {
+  // clear the HTML
+  while (list.firstChild) list.removeChild(list.firstChild);
+  // toggle clear button visibility
+  if (itemsArray.length) clearBtn.classList.remove("hidden");
+  else clearBtn.classList.add("hidden");
+  // render all items
+  itemsArray.forEach((item, index) => {
+    renderItem(item, index);
+  });
+};
 
 // Adds an item to the list
 const addItem = (e) => {
   e.preventDefault();
-  itemsArray.push(itemInput.value); // add item to the array
-  renderItem(itemInput.value); // render item
+  itemsArray.push({ text: itemInput.value, done: false }); // add item to the array
+  renderList(); // render items
   // update localStorage
   localStorage.setItem("items", JSON.stringify(itemsArray));
   form.reset();
@@ -56,17 +82,14 @@ const clearList = () => {
   itemsArray = []; // clear array
 };
 
-clear.addEventListener("click", clearList);
+clearBtn.addEventListener("click", clearList);
 
-const deleteItem = (e) => {
-  const del = e.currentTarget.parentElement;
-  del.remove();
-};
+/* ACTION */
 
-const deleteButtons = document.querySelectorAll(".delete-item");
-/* const listItems = document.querySelectorAll("#list li"); */
+// Fetch list items from localStorage
+let itemsArray = localStorage.getItem("items")
+  ? JSON.parse(localStorage.getItem("items"))
+  : [];
 
-deleteButtons.forEach((btn) => {
-  console.log(btn);
-  btn.addEventListener("click", deleteItem);
-});
+// Render list to page
+renderList();
