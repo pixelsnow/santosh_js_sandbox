@@ -76,10 +76,11 @@ form.addEventListener("submit", addItem);
 
 // Clears the list
 const clearList = () => {
-  localStorage.clear(); // clear localStorage
+  /* localStorage.clear(); // clear localStorage
   // clear HTML
-  while (list.firstChild) list.removeChild(list.firstChild);
+  while (list.firstChild) list.removeChild(list.firstChild); */
   itemsArray = []; // clear array
+  renderList();
 };
 
 clearBtn.addEventListener("click", clearList);
