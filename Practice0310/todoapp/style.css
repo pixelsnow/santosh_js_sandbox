@@ -54,12 +54,10 @@ h1 {
   align-items: center;
 }
 
-#list input {
-}
-
 #list label {
   margin: 0 0.5rem 0;
-  width: calc(100% - 3rem);
+  width: calc(100% - 4rem);
+  word-wrap: break-word;
 }
 
 #list button {
