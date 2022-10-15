@@ -13,7 +13,7 @@ html {
 body {
   display: flex;
   justify-content: center;
-  background-color: lightcoral;
+  background: linear-gradient(to bottom, #ffc5c5, #8aefd6) fixed;
 }
 
 .list-container {
@@ -55,12 +55,11 @@ h1 {
 }
 
 #list input {
-  font-family: inherit;
-  font-size: inherit;
 }
 
 #list label {
   margin: 0 0.5rem 0;
+  /*   width: calc(100% - 3rem); */
 }
 
 #list button {
