@@ -4,6 +4,7 @@ const form = document.querySelector("#item-form");
 const itemInput = document.querySelector("#item");
 const list = document.querySelector("#list");
 const clearBtn = document.querySelector("#clear-button");
+const clearDoneBtn = document.querySelector("#clear-done");
 
 const deleteItem = (e) => {
   const index = +e.currentTarget.id;
@@ -40,7 +41,9 @@ const renderItem = (item, index) => {
   const btn = document.createElement("button");
   btn.setAttribute("id", `${index}`);
   btn.classList.add("delete-item");
-  btn.textContent = "x";
+  btn.innerHTML = `<span class="material-icons">
+  close
+  </span>`;
 
   input.addEventListener("change", crossItem);
   btn.addEventListener("click", deleteItem);
@@ -57,8 +60,14 @@ const renderList = () => {
   // clear the HTML
   while (list.firstChild) list.removeChild(list.firstChild);
   // toggle clear button visibility
-  if (itemsArray.length) clearBtn.classList.remove("hidden");
-  else clearBtn.classList.add("hidden");
+  if (itemsArray.length){
+    clearBtn.classList.remove("hidden");
+    clearDoneBtn.classList.remove("hidden");
+  }
+  else{
+    clearBtn.classList.add("hidden");
+    clearDoneBtn.classList.add("hidden");
+  }
   // render all items
   itemsArray.forEach((item, index) => {
     renderItem(item, index);
@@ -79,14 +88,18 @@ form.addEventListener("submit", addItem);
 
 // Clears the list
 const clearList = () => {
-  /* localStorage.clear(); // clear localStorage
-  // clear HTML
-  while (list.firstChild) list.removeChild(list.firstChild); */
   itemsArray = []; // clear array
   renderList();
 };
 
+const clearDone = () =>{
+  itemsArray = itemsArray.filter(item => !item.done);
+  renderList();
+}
+
 clearBtn.addEventListener("click", clearList);
+
+clearDoneBtn.addEventListener('click', clearDone);
 
 /* ACTION */
 
