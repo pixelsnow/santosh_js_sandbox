@@ -6,20 +6,15 @@ const list = document.querySelector("#list");
 const clearBtn = document.querySelector("#clear-button");
 const clearDoneBtn = document.querySelector("#clear-done");
 
-const updateLocalAndHTML = () => {
-  localStorage.setItem("items", JSON.stringify(itemsArray));
-  renderList();
-};
-
+// Deletes an item
 const deleteItem = (e) => {
   const index = +e.currentTarget.id;
-  console.log("deleting index ", index);
   itemsArray.splice(index, 1);
   updateLocalAndHTML();
 };
 
+// Toggles chechbox of an item
 const crossItem = (e) => {
-  /* e.currentTarget.parentElement.classList.toggle("done"); */
   const index = +e.currentTarget.id.slice(4);
   itemsArray[index].done = !itemsArray[index].done;
   updateLocalAndHTML();
@@ -33,9 +28,7 @@ const renderItem = (item, index) => {
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
   input.setAttribute("id", `item${index}`);
-  console.log(index, input.checked);
   if (item.done) input.checked = true;
-  console.log(index, input.checked);
 
   const label = document.createElement("label");
   label.setAttribute("for", `item${index}`);
@@ -45,9 +38,9 @@ const renderItem = (item, index) => {
   btn.setAttribute("id", `${index}`);
   btn.classList.add("delete-item");
   btn.innerHTML = `<span class="material-icons">
-  close
-  </span>`;
+  close</span>`;
 
+  // Event listeners
   input.addEventListener("change", crossItem);
   btn.addEventListener("click", deleteItem);
 
@@ -60,17 +53,18 @@ const renderItem = (item, index) => {
 
 // Add all items to HTML
 const renderList = () => {
-  // clear the HTML
+  // Clear the HTML
   while (list.firstChild) list.removeChild(list.firstChild);
-  // toggle clear button visibility
+  // Toggle clear buttons visibility
   if (itemsArray.length) {
+    // Possible improvement: use buttons-container
     clearBtn.classList.remove("hidden");
     clearDoneBtn.classList.remove("hidden");
   } else {
     clearBtn.classList.add("hidden");
     clearDoneBtn.classList.add("hidden");
   }
-  // render all items
+  // Render all items
   itemsArray.forEach((item, index) => {
     renderItem(item, index);
   });
@@ -79,22 +73,33 @@ const renderList = () => {
 // Adds an item to the list
 const addItem = (e) => {
   e.preventDefault();
-  itemsArray.push({ text: itemInput.value, done: false }); // add item to the array
-  renderList(); // render items
-  // update localStorage
+  // Add item to itemsArray
+  itemsArray.push({ text: itemInput.value, done: false });
+  // Update localStorage and HTML
   updateLocalAndHTML();
   form.reset();
 };
 
 // Clears the list
 const clearList = () => {
-  itemsArray = []; // clear array
+  // Clear array
+  itemsArray = [];
+  // Update localStorage and HTML with itemsArray
   updateLocalAndHTML();
 };
 
+// Clears items that are checked
 const clearDone = () => {
-  itemsArray = itemsArray.filter((item) => !item.done); // remove done items
+  // Remove checked items from itemsArray
+  itemsArray = itemsArray.filter((item) => !item.done);
+  // Update localStorage and HTML with itemsArray
   updateLocalAndHTML();
+};
+
+// Updates localStorage and HTML with data from itemsArray
+const updateLocalAndHTML = () => {
+  localStorage.setItem("items", JSON.stringify(itemsArray));
+  renderList();
 };
 
 /* EVENT LISTENERS */
