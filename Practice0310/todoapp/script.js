@@ -83,6 +83,7 @@ const addItem = (e) => {
   renderList(); // render items
   // update localStorage
   updateLocalAndHTML();
+  form.reset();
 };
 
 // Clears the list
