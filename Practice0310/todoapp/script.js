@@ -60,11 +60,10 @@ const renderList = () => {
   // clear the HTML
   while (list.firstChild) list.removeChild(list.firstChild);
   // toggle clear button visibility
-  if (itemsArray.length){
+  if (itemsArray.length) {
     clearBtn.classList.remove("hidden");
     clearDoneBtn.classList.remove("hidden");
-  }
-  else{
+  } else {
     clearBtn.classList.add("hidden");
     clearDoneBtn.classList.add("hidden");
   }
@@ -92,14 +91,14 @@ const clearList = () => {
   renderList();
 };
 
-const clearDone = () =>{
-  itemsArray = itemsArray.filter(item => !item.done);
+const clearDone = () => {
+  itemsArray = itemsArray.filter((item) => !item.done);
   renderList();
-}
+};
 
 clearBtn.addEventListener("click", clearList);
 
-clearDoneBtn.addEventListener('click', clearDone);
+clearDoneBtn.addEventListener("click", clearDone);
 
 /* ACTION */
 
