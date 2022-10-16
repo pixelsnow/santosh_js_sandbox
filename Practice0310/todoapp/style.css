@@ -8,7 +8,7 @@
 
 html {
   font-family: "Syne", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 body {
@@ -18,16 +18,18 @@ body {
 }
 
 .list-container {
-  margin-top: 10vh;
-  width: 350px;
+  margin-top: 5vh;
+  max-width: 400px;
+  width: 90vw;
   background-color: white;
-  padding: 3rem;
-  border-radius: 1rem;
+  padding: 4rem;
+  border-radius: 2rem;
   text-align: center;
 }
 
 h1 {
   margin: 0 0 2rem;
+  font-size: 2.5rem;
 }
 
 #item-form {
@@ -67,8 +69,8 @@ h1 {
   border: none;
   background-color: black;
   color: white;
-  height: 1.4rem;
-  width: 1.4rem;
+  height: 1.8rem;
+  width: 1.8rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;

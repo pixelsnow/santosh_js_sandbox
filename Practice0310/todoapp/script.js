@@ -6,20 +6,23 @@ const list = document.querySelector("#list");
 const clearBtn = document.querySelector("#clear-button");
 const clearDoneBtn = document.querySelector("#clear-done");
 
+const updateLocalAndHTML = () => {
+  localStorage.setItem("items", JSON.stringify(itemsArray));
+  renderList();
+};
+
 const deleteItem = (e) => {
   const index = +e.currentTarget.id;
   console.log("deleting index ", index);
   itemsArray.splice(index, 1);
-  localStorage.setItem("items", JSON.stringify(itemsArray));
-  renderList();
+  updateLocalAndHTML();
 };
 
 const crossItem = (e) => {
   /* e.currentTarget.parentElement.classList.toggle("done"); */
   const index = +e.currentTarget.id.slice(4);
   itemsArray[index].done = !itemsArray[index].done;
-  localStorage.setItem("items", JSON.stringify(itemsArray));
-  renderList();
+  updateLocalAndHTML();
 };
 
 // Adds an item to HTML
@@ -79,22 +82,23 @@ const addItem = (e) => {
   itemsArray.push({ text: itemInput.value, done: false }); // add item to the array
   renderList(); // render items
   // update localStorage
-  localStorage.setItem("items", JSON.stringify(itemsArray));
-  form.reset();
+  updateLocalAndHTML();
 };
-
-form.addEventListener("submit", addItem);
 
 // Clears the list
 const clearList = () => {
   itemsArray = []; // clear array
-  renderList();
+  updateLocalAndHTML();
 };
 
 const clearDone = () => {
-  itemsArray = itemsArray.filter((item) => !item.done);
-  renderList();
+  itemsArray = itemsArray.filter((item) => !item.done); // remove done items
+  updateLocalAndHTML();
 };
+
+/* EVENT LISTENERS */
+
+form.addEventListener("submit", addItem);
 
 clearBtn.addEventListener("click", clearList);
 
