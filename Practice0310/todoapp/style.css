@@ -23,7 +23,7 @@ body {
   width: 90vw;
   background-color: white;
   padding: 4rem;
-  border-radius: 2rem;
+  border-radius: 3rem;
   text-align: center;
 }
 
@@ -39,8 +39,9 @@ h1 {
 #item-form input {
   font-family: inherit;
   font-size: inherit;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  min-height: 3rem;
+  padding: 0 1rem;
+  border-radius: 0.3rem;
   border: 2px solid black;
   width: 100%;
 }
@@ -100,11 +101,11 @@ h1 {
   background-color: black;
   color: white;
   min-height: 3rem;
-  min-width: 48%;
+  min-width: 47%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 }
 
 #clear-done {
